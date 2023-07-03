@@ -1,4 +1,7 @@
 const http = require('http') //memanggil modul http, fitur bawaan node.js
+//1. cek di fitur bawaan nodejs
+//2. cek di library npmjs.com
+//3. memanggil file lain
 
 http.createServer( function (request, respon) {
     // pengecekan url yang diminta/direquest oleh client/user
@@ -8,7 +11,7 @@ http.createServer( function (request, respon) {
         //respon.end --> menutup/mengakhirkan proses transfer data yang dibuka oleh header
 
         respon.writeHead(200, {"Content-Type" : "text/plain"})
-        respon.write( 'text ini berasal dari server node.js' )
+        respon.write( '<hr>text ini berasal dari server node.js' )
         respon.end()
     } else if (request.url == '/hubungi-kami') {
         respon.writeHead(200, {"Content-Type" : "text/plain"})
