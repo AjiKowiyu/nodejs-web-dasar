@@ -77,6 +77,22 @@ http.createServer( function(req, res) {
                 }
             )
         break
+
+        case '/delete':
+            res.writeHead(200, {"Content-Type" : "text/plain"})
+            database.query(
+                `DELETE FROM karyawan WHERE id = 9;`,
+                function(error, hasil) {
+                    if (error) throw error
+                    if (hasil.affectedRows > 0) {
+                        res.write('berhasil menghapus '+ hasil.affectedRows + ' baris data ke mysql')
+                    } else {
+                        res.write('anda sudah pernah hapus data tersebut')
+                    }
+                    res.end()
+                }
+            )
+        break
         
         default:
             res.writeHead(404, {"Content-Type" : "text/html"})
