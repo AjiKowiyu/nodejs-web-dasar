@@ -44,6 +44,23 @@ http.createServer( function(req, res) {
                 res.end()
             })
         break
+
+        case '/insert':
+            res.writeHead(200, {"Content-Type" : "text/plain"})
+            database.query(
+                `INSERT INTO karyawan
+                (nip, nama, jabatan, tanggal_join, agama_id)
+                VALUES
+                (787878, 'Neymar', 'Wing', '2023-12-19', 2);`,
+                function (error, hasil) {
+                    if (error) throw error
+                    if (hasil.affectedRows > 0) {
+                        res.write('berhasil memasukkan '+ hasil.affectedRows + ' baris data ke mysql')
+                    }
+                    res.end()
+                }
+            )
+        break
         
         default:
             res.writeHead(404, {"Content-Type" : "text/html"})
@@ -52,3 +69,4 @@ http.createServer( function(req, res) {
         break
     }
 }).listen(port)
+console.log('server sudah jalan di localhost:'+port)
