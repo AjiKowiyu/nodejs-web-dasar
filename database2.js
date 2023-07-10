@@ -61,6 +61,22 @@ http.createServer( function(req, res) {
                 }
             )
         break
+
+        case '/update':
+            res.writeHead(200, {"Content-Type" : "text/plain"})
+            database.query(
+                `UPDATE karyawan
+                SET nama = 'Maradona', jabatan = 'Legend Football'
+                WHERE id = 13;`,
+                function(error, hasil) {
+                    if (error) throw error
+                    if (hasil.affectedRows > 0) {
+                        res.write('berhasil memperbarui '+ hasil.affectedRows + ' baris data ke mysql')
+                    }
+                    res.end()
+                }
+            )
+        break
         
         default:
             res.writeHead(404, {"Content-Type" : "text/html"})
